@@ -45,7 +45,13 @@ module Applications =
         | JobOffer of Offer
 
 module Persistence =
-    let addOrUpdate addFun updateFun lookupFun posting : Posting =
+    type public Result<'a> =
+        | Cancelled
+        | Fail of string
+        | Success of 'a
+
+    let addOrUpdatePosting addFun updateFun lookupFun posting : Result<Posting> =
         match lookupFun posting with
-        | true -> updateFun posting
-        | false -> addFun posting
+        | Success _ -> updateFun posting
+        | Fail _ -> addFun posting
+        | Cancelled -> Cancelled

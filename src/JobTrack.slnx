@@ -1,3 +1,4 @@
 <Solution>
     <Project Path="JobTrack.Core/JobTrack.Core.fsproj"/>
+    <Project Path="JobTrack.Ui/JobTrack.Ui.fsproj"/>
 </Solution>
